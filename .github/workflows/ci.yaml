@@ -1,0 +1,22 @@
+name: Test actions
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  simple tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: printing something on screen
+        run: echo "Starting test"
+      - uses: actions/checkout@v4
+      - name: listing directory
+        run: ls
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: run python code
+        run: python test.py
