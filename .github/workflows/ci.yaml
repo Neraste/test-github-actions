@@ -20,3 +20,6 @@ jobs:
           python-version: 3.11
       - name: run python code
         run: python test.py
+      - name: run heavy python code
+        if: github.event.pull_request.draft == false
+        run: python test_heavy.py
