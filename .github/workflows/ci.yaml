@@ -2,6 +2,11 @@ name: Test actions
 
 on:
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
   push:
     branches:
       - master
@@ -20,3 +25,6 @@ jobs:
           python-version: 3.11
       - name: run python code
         run: python test.py
+      - name: run heavy python code
+        if: github.event.pull_request.draft == false
+        run: python test_heavy.py
